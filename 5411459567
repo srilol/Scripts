@@ -4,8 +4,8 @@ local function timer()
     return ok
 end
 
-spawn(function()
-    repeat task.wait()
+task.spawn(function()
+    while task.wait() do
         pcall(function()
             if timer() >= 45 then
                 print("Hopping server")
@@ -25,6 +25,6 @@ spawn(function()
                 print("waiting for it to give money since the timer is under 45 sec!")
             end
         end)
-    until false
+    end
 end)
 
