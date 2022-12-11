@@ -13,7 +13,7 @@ spawn(function()
                 module:Teleport(game.PlaceId)
             else
                 task.wait(3)
-                print("ok")
+                print("waiting for it to give money since the timer is under 45 sec!")
             end
         end)
     until false
