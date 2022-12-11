@@ -1,0 +1,21 @@
+local function timer()
+    local ok;
+    ok = tonumber(string.match(game:GetService("Workspace").Message.Text, "%d+"))
+    return ok
+end
+
+spawn(function()
+    repeat task.wait()
+        pcall(function()
+            if timer() >= 45 then
+                print("Hopping server")
+                local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
+                module:Teleport(game.PlaceId)
+            else
+                task.wait(3)
+                print("ok")
+            end
+        end)
+    until false
+end)
+
