@@ -1,14 +1,26 @@
+
+
 local function timer()
     local ok;
     ok = tonumber(string.match(game:GetService("Workspace").Message.Text, "%d+"))
     return ok
 end
 
+local function checktimer()
+    local time = 0
+    if entertimer == nil then
+        time = 45
+    else
+        time = entertimer
+    end
+    return time
+end
+
 task.spawn(function()
     while task.wait() do
         pcall(function()
-            if timer() >= 45 then
-                print("Hopping server")
+            if timer() > checktimer() then
+                print("Hopping server since the timer is higher than " .. checktimer())
                 local serverList = {}
                 for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do task.wait()
                     if v.playing and type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
@@ -22,7 +34,7 @@ task.spawn(function()
                 end
             else
                 task.wait(3)
-                print("waiting for it to give money since the timer is under 45 sec!")
+                print("waiting for it to give money since the timer is under " .. checktimer() " sec!")
             end
         end)
     end
