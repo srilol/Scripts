@@ -1,0 +1,9 @@
+local ch = game.Players.LocalPlayer.Character
+local hum = ch.Humanoid
+local new = hum:Clone()
+hum.Parent = nil
+new.Parent  = ch
+new:Destroy()
+hum.Parent = ch
+task.wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(7974.64844, -2152.90625, -17078.1016, 0.149227753, -2.01689354e-09, 0.98880285, 2.25201315e-08, 1, -1.35895128e-09, -0.98880285, 2.2470763e-08, 0.149227753)
